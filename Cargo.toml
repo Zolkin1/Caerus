@@ -6,3 +6,24 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+cortex-m = "0.6.0"
+cortex-m-rt = "0.6.10"
+panic-halt = "0.2.0"
+nb = "1.0.0"
+embedded-hal = "0.2.7"
+
+[build-dependencies]
+cc = "1.0"
+
+[dependencies.stm32h7xx-hal]
+version = "0.12.2"
+features = ["stm32h743v"]
+
+[profile.dev]
+debug = true
+panic = "abort"
+opt-level = 0
+
+[profile.release]
+panic = "abort"
+opt-level = 3
