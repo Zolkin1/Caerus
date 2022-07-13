@@ -1,6 +1,5 @@
 pub mod tasks;
 use crate::rtos_config::{NUM_TASKS, START_TASK_STACK_SPACE, TASK_STACK_SIZE_KB};
-use crate::device::ContextSwitch;
 
 pub const PRIORITY_0: u8 = 0;
 pub const PRIORITY_1: u8 = 0;
@@ -41,13 +40,12 @@ pub fn new<D>(a_device: D) -> Sys<RoundRobin, D> {
 }
 
 impl<S, D> Sys<S, D>
-    where D: ContextSwitch {
+{
     pub fn start_sched(&self, t: [tasks::Task<tasks::NotInit>; NUM_TASKS]) {
         // schedule the tasks
         // Sort the tasks by priority into a new structure
         // Set the tasks to ready
         // Get the highest priority task and join that function
-        D::save_registers();
         loop {}
     }
 }
